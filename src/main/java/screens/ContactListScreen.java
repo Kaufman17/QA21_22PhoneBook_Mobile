@@ -33,4 +33,7 @@ public class ContactListScreen extends BaseScreen{
         Assert.assertTrue(isActivityTitleDisplayed("Contact list"));
         return this;
     }
+
+
+
 }
