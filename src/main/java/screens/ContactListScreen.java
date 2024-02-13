@@ -20,9 +20,12 @@ public class ContactListScreen extends BaseScreen{
         //return activityTextView.getText().contains("Contact list");
         return isShouldHave(activityTextView,text,10);
     }
+    //******************* HW postCondition LoginTests *****************
     public AuthenticationScreen logout(){
-        menuOptions.click();
-        logoutButton.click();
+        if (activityTextView.getText().equals("Contact list")) {
+            menuOptions.click();
+            logoutButton.click();
+        }
         return new AuthenticationScreen(driver);
     }
 
