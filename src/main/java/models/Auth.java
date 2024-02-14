@@ -11,9 +11,6 @@ import lombok.ToString;
 @ToString
 
 public class Auth {
-
-
-
     private String email;
     private String password;
 }

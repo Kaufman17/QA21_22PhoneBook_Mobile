@@ -14,51 +14,49 @@ public class AuthenticationScreen extends BaseScreen {
     public AuthenticationScreen(AppiumDriver<MobileElement> driver) {
         super(driver);
     }
+
     @FindBy(xpath = "//*[@resource-id='com.sheygam.contactapp:id/inputEmail']")
     MobileElement emailEditText;
 
     @FindBy(id = "com.sheygam.contactapp:id/inputPassword")
     MobileElement passwordEditText;
 
-    //@FindBy(xpath = "//*[text()]='LOGIN'")
     @FindBy(xpath = "//*[@text='LOGIN']")
     MobileElement loginButton;
+
     public AuthenticationScreen fillEmail(String email) {
         //pause(4000);
-        should(emailEditText,10);
+        should(emailEditText, 10);
         type(emailEditText, email);
         return this;
 
     }
 
     public AuthenticationScreen fillPassword(String password) {
-        type(passwordEditText,password);
+        type(passwordEditText, password);
         return this;
 
     }
 
-    public ContactListScreen submitLogin(){
+    public ContactListScreen submitLogin() {
         loginButton.click();
         return new ContactListScreen(driver);
     }
 
-    public AuthenticationScreen submitLoginNegative(){
+    public AuthenticationScreen submitLoginNegative() {
         loginButton.click();
         return this;
     }
 
-    public AuthenticationScreen fillLoginRegistrationForm(Auth auth){
-        should(emailEditText,10);
+    public AuthenticationScreen fillLoginRegistrationForm(Auth auth) {
+        should(emailEditText, 10);
         type(emailEditText, auth.getEmail());
         type(passwordEditText, auth.getPassword());
         return this;
     }
-    public AuthenticationScreen isErrorMessageHasText(String text){
-        Alert alert = new WebDriverWait(driver,10)
-                .until(ExpectedConditions.alertIsPresent());
-        driver.switchTo().alert();
-        Assert.assertTrue(alert.getText().contains(text));
-        alert.accept();
+
+    public AuthenticationScreen isErrorMessageHasText(String text) {
+        checkAlertText(text);
         return this;
     }
 }
